@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Turf Booking</title>
+</head>
+<body>
+
+<h1>Available Turfs</h1>
+
+<ul id="turfList"></ul>
+
+<script>
+    fetch("http://localhost:8080/turfs")
+        .then(response => response.json())
+        .then(data => {
+            const list = document.getElementById("turfList");
+            data.forEach(turf => {
+                const li = document.createElement("li");
+                li.textContent = turf.name + " - " + turf.location + " - ₹" + turf.pricePerHour;
+                list.appendChild(li);
+            });
+        })
+        .catch(error => console.error(error));
+</script>
+
+</body>
+</html>
