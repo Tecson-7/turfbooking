@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Turf Booking</title>
+    <meta charset="UTF-8">
+    <title>Turf Booking App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Available Turfs</h1>
+<h1>Turf Booking App</h1>
 
+<h2>Available Turfs</h2>
 <ul id="turfList"></ul>
 
-<script>
-    fetch("http://localhost:8080/turfs")
-        .then(response => response.json())
-        .then(data => {
-            const list = document.getElementById("turfList");
-            data.forEach(turf => {
-                const li = document.createElement("li");
-                li.textContent = turf.name + " - " + turf.location + " - ₹" + turf.pricePerHour;
-                list.appendChild(li);
-            });
-        })
-        .catch(error => console.error(error));
-</script>
+<h2>Book a Turf</h2>
+<form id="bookingForm">
+    <label>Turf ID: <input type="number" id="turfId" required></label><br>
+    <label>Date: <input type="date" id="bookingDate" required></label><br>
+    <label>Start Time: <input type="time" id="startTime" required></label><br>
+    <label>End Time: <input type="time" id="endTime" required></label><br>
+    <button type="submit">Book Turf</button>
+</form>
 
+<h2>All Bookings</h2>
+<div id="bookingList"></div>
+
+<script src="script.js"></script>
 </body>
 </html>
